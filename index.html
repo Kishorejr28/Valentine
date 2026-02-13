@@ -93,10 +93,12 @@ function unlock(){
     document.getElementById("login").style.display = "none";
     document.getElementById("main").style.display = "flex";
     typeWriter();
-    // Start YouTube music after user interaction
-    const yt = document.getElementById("ytmusic");
-    yt.style.display = "block"; // just in case
-    yt.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+// Play the love song
+    const audio = document.getElementById("loveSong");
+    audio.play().catch(() => {
+      console.log("Autoplay prevented, click again to play music");
+    });
+
   } else if(secret.length === 0){
     document.getElementById("error").innerText = "Type something… only we two call each other 💕";
   } else {
@@ -124,6 +126,6 @@ function yes(){
   }
 }
 </script>
-
+<audio id="loveSong" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
 </body>
 </html>

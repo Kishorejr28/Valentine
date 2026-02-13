@@ -79,7 +79,7 @@ button{
 <div style="display:none;">
   <iframe width="0" height="0" 
     src="https://www.youtube.com/embed/MpMVO9Qe2J4?autoplay=1&loop=1&playlist=MpMVO9Qe2J4"
-    frameborder="0" allow="autoplay">
+    frameborder="0" allow="autoplay; encrypted-media">
   </iframe>
 </div>
 
@@ -95,7 +95,8 @@ function unlock(){
     typeWriter();
     // Start YouTube music after user interaction
     const yt = document.getElementById("ytmusic");
-    yt.src += "&autoplay=1";
+    yt.style.display = "block"; // just in case
+    yt.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
   } else if(secret.length === 0){
     document.getElementById("error").innerText = "Type something… only we two call each other 💕";
   } else {

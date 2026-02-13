@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Valentine 💖</title>
+
+<style>
+body{
+  margin:0;
+  background:linear-gradient(#ff4e8b,#ff7eb3);
+  height:100vh;
+  overflow:hidden;
+  font-family:'Segoe UI',sans-serif;
+  color:white;
+}
+.center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+}
+.card{
+  background:rgba(0,0,0,.3);
+  padding:40px;
+  border-radius:20px;
+  max-width:600px;
+  text-align:center;
+  box-shadow:0 0 30px rgba(255,255,255,.3);
+}
+input,button{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  margin-top:10px;
+  font-size:16px;
+}
+button{
+  background:#ff3b7b;
+  color:white;
+  cursor:pointer;
+}
+#hearts span{
+  position:fixed;
+  bottom:-10px;
+  animation:float 8s infinite;
+  font-size:24px;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:1;}
+  100%{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="login" class="center">
+  <div class="card">
+    <h1>💌 Private Love Letter</h1>
+    <p>Enter the secret word</p>
+    <input id="pass" type="password" placeholder="Our secret..." />
+    <button onclick="unlock()">Open ❤️</button>
+    <p id="error"></p>
+  </div>
+</div>
+
+<div id="main" style="display:none" class="center">
+  <div class="card">
+    <h1>To My Valentine 💖</h1>
+    <p id="text"></p>
+    <h2>Will you be my Valentine? 💍</h2>
+    <button onclick="yes()">YES 😍</button>
+  </div>
+</div>
+
+<div id="hearts"></div>
+
+<audio id="music" autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4a6f2f5f55.mp3">
+</audio>
+
+<script>
+const message = "My love… From the moment you came into my life, everything changed. You make my world brighter, my heart calmer, and my days happier. This page exists for just one reason — to tell you that I love you more than words can ever say ❤️";
+
+function unlock(){
+  if(document.getElementById("pass").value=="love"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("main").style.display="flex";
+    typeWriter();
+    document.getElementById("music").play();
+  } else {
+    document.getElementById("error").innerText="Wrong secret 😜";
+  }
+}
+
+let i=0;
+function typeWriter(){
+  if(i<message.length){
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter,50);
+  }
+}
+
+function yes(){
+  alert("You just made me the happiest person alive 💖");
+  for(let i=0;i<50;i++){
+    let heart=document.createElement("span");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=Math.random()*30+10+"px";
+    document.getElementById("hearts").appendChild(heart);
+  }
+}
+</script>
+
+</body>
+</html>
